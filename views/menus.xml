@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        
+        <menuitem
+            id="appdominales_root_menu"
+            name="APPDominales"
+            sequence="1"/>
+            
+        <menuitem
+            id="config_root_menu"
+            name="Configuración"
+            parent="appdominales_root_menu"
+            sequence="50"/>
+    
+    </data>
+    
+
+</odoo>
+

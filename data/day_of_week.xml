@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="lunes" model="appdominales.dayofweek">
+            <field name="name">Lunes</field>
+            <field name="code">L</field>
+        </record>
+        <record id="martes" model="appdominales.dayofweek">
+            <field name="name">Martes</field>
+            <field name="code">M</field>
+        </record>
+        <record id="miercoles" model="appdominales.dayofweek">
+            <field name="name">Miercoles</field>
+            <field name="code">X</field>
+        </record>
+        <record id="jueves" model="appdominales.dayofweek">
+            <field name="name">Jueves</field>
+            <field name="code">J</field>
+        </record>
+        <record id="viernes" model="appdominales.dayofweek">
+            <field name="name">Viernes</field>
+            <field name="code">V</field>
+        </record>
+        <record id="sabado" model="appdominales.dayofweek">
+            <field name="name">Sábado</field>
+            <field name="code">S</field>
+        </record>
+        <record id="domingo" model="appdominales.dayofweek">
+            <field name="name">Domingo</field>
+            <field name="code">D</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

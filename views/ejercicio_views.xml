@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="ejercicio_ejercicio_view_tree" model="ir.ui.view">
+            <field name="name">ejercicio.ejercicio.view.tree</field>
+            <field name="model">ejercicio.ejercicio</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="grupo_id"/>
+                    <field name="link" widget="url"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ejercicio_ejercicio_action" model="ir.actions.act_window">
+            <field name="name">Ejercicios</field>
+            <field name="res_model">ejercicio.ejercicio</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem
+            id="ejercicio_root_menu"
+            name="Ejercicios"
+            parent="config_root_menu"
+            action="ejercicio_ejercicio_action"
+            sequence="2"/>
+
+        <menuitem
+            id="ejercicio_ejercicio_menu"
+            name="Ejercicios"
+            parent="ejercicio_root_menu"
+            action="ejercicio_ejercicio_action"
+            sequence="2"/>
+
+        <record id="ejercicio_grupo_view_tree" model="ir.ui.view">
+            <field name="name">ejercicio.grupo.view.tree</field>
+            <field name="model">ejercicio.grupo</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="nombre"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ejercicio_grupo_action" model="ir.actions.act_window">
+            <field name="name">Grupos Musculares</field>
+            <field name="res_model">ejercicio.grupo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem
+            id="ejercicio_grupo_menu"
+            name="Grupos Musculares"
+            action="ejercicio_grupo_action"
+            parent="ejercicio_root_menu"
+            sequence="3"/>
+    </data>
+
+</odoo>
