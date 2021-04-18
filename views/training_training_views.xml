@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="training_training_view_tree" model="ir.ui.view">
+            <field name="name">training.training.view.tree</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="client_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="training_training_view_form" model="ir.ui.view">
+            <field name="name">training.training.view.form</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <field name="is_trainer" invisible="1"/>
+                        <group attrs="{'invisible':[('is_trainer','=',False)]}">
+                            <group>
+                                <field name="client_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Routines">
+                                <field name="routine_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="dayofweek_string"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

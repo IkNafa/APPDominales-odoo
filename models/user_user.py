@@ -15,7 +15,8 @@ class User(models.Model):
     gender = fields.Selection([('masculino','Masculino'),('femenino','Femenino'),('otro','Otro')], string="Género")
 
     measures_count = fields.Integer(compute="_compute_measures_count",string="Measures")
-    routine_count = fields.Integer(compute="_compute_routine_count", string="Routines")
+    training_count = fields.Integer(compute="_compute_training_count", string="trainings")
+    survey_count = fields.Integer(compute="_compute_survey_count",string="Surveys")
 
     # Client
 
@@ -33,15 +34,19 @@ class User(models.Model):
         for record in self:
             record.measures_count = self.env['user.measures'].search_count([('user_id','=',record.id)])
     
-    def _compute_routine_count(self):
+    def _compute_training_count(self):
         for record in self:
-            record.routine_count = self.env['routine.routine'].search_count(['|',('owner_id','=',self.id),('client_id','=',self.id)])
+            record.training_count = self.env['training.training'].search_count(['|',('owner_id','=',self.id),('client_id','=',self.id)])
+
+    def _compute_survey_count(self):
+        for record in self:
+            record.survey_count = self.env['trainer.survey'].search_count([('user_id','=',self.id)])
     
-    def open_user_routines(self):
+    def open_user_trainings(self):
         return {
-            'name': self.login + ' routines',
+            'name': self.login + ' trainings',
             'view_mode': 'tree,form',
-            'res_model': 'routine.routine',
+            'res_model': 'training.training',
             'type':'ir.actions.act_window',
             'domain':['|',('owner_id','=',self.id),('client_id','=',self.id)],
             'context':{'default_owner_id':self.id}
@@ -52,6 +57,16 @@ class User(models.Model):
             'name': self.login + ' measures',
             'view_mode': 'tree,form',
             'res_model': 'user.measures',
+            'type':'ir.actions.act_window',
+            'domain':[('user_id','=',self.id)],
+            'context':{'default_user_id':self.id}
+        }
+
+    def open_user_surveys(self):
+        return {
+            'name': self.login + ' surveys',
+            'view_mode': 'tree,form',
+            'res_model': 'trainer.survey',
             'type':'ir.actions.act_window',
             'domain':[('user_id','=',self.id)],
             'context':{'default_user_id':self.id}

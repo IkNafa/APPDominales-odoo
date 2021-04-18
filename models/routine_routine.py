@@ -3,10 +3,7 @@ from odoo import _, api, fields, models
 class Routine(models.Model):
     _name = 'routine.routine'
 
-    owner_id = fields.Many2one('user.user', string="Owner User", required=True)
-    client_id = fields.Many2one('user.user', string="Assigned to")
-
-    is_trainer = fields.Boolean(related="owner_id.is_trainer")
+    training_id = fields.Many2one('training.training', required=True)
 
     name = fields.Char(string="Name", required=True)
     start_date = fields.Date(string="Start date")

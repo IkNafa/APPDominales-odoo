@@ -17,3 +17,4 @@ access_routine_dayofweek,access_routine_dayofweek,model_routine_dayofweek,base.g
 access_routine_exercise_set,access_routine_exercise_set,model_routine_exercise_set,base.group_user,1,1,1,1
 access_user_mark,access_user_mark,model_user_mark,base.group_user,1,1,1,1
 access_exercise_group,access_exercise_group,model_exercise_group,base.group_user,1,1,1,1
+access_training_training,access_training_training,model_training_training,base.group_user,1,1,1,1

@@ -21,15 +21,18 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button string="Set Trainer" name="setTrainer" type="object" class="oe_highlight" attrs="{'invisible':[('is_trainer','=',True)]}"/>
+                        <button string="Set Trainer" name="setTrainer" type="object" class="oe_highlight" attrs="{'invisible':['|',('is_trainer','=',True),('id','=',False)]}"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box" attrs="{'invisible':[('id','=',False)]}">
                             <button name="open_user_measures" type="object" class="oe_stat_button" icon="fa-tachometer">
                                 <field name="measures_count" widget="statinfo"/>
                             </button>
-                            <button name="open_user_routines" type="object" class="oe_stat_button" icon="fa-folder-open-o">
-                                <field name="routine_count" widget="statinfo"/>
+                            <button name="open_user_trainings" type="object" class="oe_stat_button" icon="fa-folder-open-o">
+                                <field name="training_count" widget="statinfo"/>
+                            </button>
+                            <button name="open_user_surveys" type="object" class="oe_stat_button" icon="fa-question" attrs="{'invisible':[('is_trainer','=',False)]}">
+                                <field name="survey_count" widget="statinfo"/>
                             </button>
                         </div>
                         <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>

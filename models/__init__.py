@@ -6,3 +6,4 @@ from . import trainer_survey
 from . import user_measures
 from . import user_rol
 from . import user_user
+from . import training_training

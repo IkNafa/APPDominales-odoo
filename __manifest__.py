@@ -31,6 +31,7 @@
         'views/user_measures_views.xml',
         'views/user_rol_views.xml',
         'views/user_user_views.xml',
+        'views/training_training_views.xml',
         
     ],
     'application': True,
