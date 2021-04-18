@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="user_user_view_tree" model="ir.ui.view">
+            <field name="name">user.user.view.tree</field>
+            <field name="model">user.user</field>
+            <field name="arch" type="xml">
+                <tree duplicate="false">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="user_user_view_form" model="ir.ui.view">
+            <field name="name">user.user.view.form</field>
+            <field name="model">user.user</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Set Trainer" name="setTrainer" type="object" class="oe_highlight" attrs="{'invisible':[('is_trainer','=',True)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" attrs="{'invisible':[('id','=',False)]}">
+                            <button name="open_user_measures" type="object" class="oe_stat_button" icon="fa-tachometer">
+                                <field name="measures_count" widget="statinfo"/>
+                            </button>
+                            <button name="open_user_routines" type="object" class="oe_stat_button" icon="fa-folder-open-o">
+                                <field name="routine_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title">
+                            <h1><field name="login" placeholder="Username"/></h1>
+                            <field name="first_name" placeholder="First Name" style="margin-right:5px"/>
+                            <field name="last_names" placeholder="Last Names"/>
+                        </div>
+
+                        <group>
+                            <group string="Personal Information">
+                                <field name="is_trainer" invisible="1"/>
+                                <field name="gender"/>
+                                <field name="birthday"/>
+                                <field name="city"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
+                            </group>
+                            <group string="Trainer" attrs="{'invisible':[('is_trainer','!=',True)]}">
+                                <field name="rol_ids" widget="many2many_tags"/>
+                            </group>
+                            <group string="Client" attrs="{'invisible':[('is_trainer','=',True)]}">
+                                <field name="profession"/>
+                            </group>
+                        </group>
+                        <group string="Biography">
+                            <field name="bio" nolabel="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Clients" attrs="{'invisible':[('is_trainer','!=',True)]}">
+                                <field name="client_ids">
+                                    <tree create="false" duplicate="false">
+                                        <field name="name"/>
+                                        <field name="login"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Trainer" attrs="{'invisible':[('is_trainer','=',True)]}">
+                                <group>
+                                    <field name="trainer_id" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="user_user_action" model="ir.actions.act_window">
+            <field name="name">Users</field>
+            <field name="res_model">user.user</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="user_user_menu"
+            name="Users"
+            action="user_user_action"
+            parent="appdominales_root_menu"
+            sequence="1"/>
+    
+    </data>
+    
+
+</odoo>

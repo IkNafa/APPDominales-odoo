@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="routine_routine_view_tree" model="ir.ui.view">
+            <field name="name">routine.routine.view.tree</field>
+            <field name="model">routine.routine</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="dayofweek_string"/>
+                    <field name="client_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="routine_routine_view_form" model="ir.ui.view">
+            <field name="name">routine.routine.view.form</field>
+            <field name="model">routine.routine</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="is_trainer" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group string="Plan">
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="dayofweek_ids" widget="many2many_checkboxes"/>
+                            </group>
+                            <group string="Client" attrs="{'invisible':[('is_trainer','=',False)]}">
+                                <field name="client_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Exercises">
+                                <field name="routine_exercise_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="bartype_1" model="exercise.bar">
+            <field name="name">Barbell</field>
+        </record>
+        <record id="bartype_2" model="exercise.bar">
+            <field name="name">Dumbbell</field>
+        </record>
+        <record id="bartype_3" model="exercise.bar">
+            <field name="name">Safety Bar</field>
+        </record>
+        <record id="bartype_4" model="exercise.bar">
+            <field name="name">Cambered Bar</field>
+        </record>
+        <record id="bartype_5" model="exercise.bar">
+            <field name="name">Neutral Grip Bar</field>
+        </record>
+        <record id="bartype_6" model="exercise.bar">
+            <field name="name">Trap Bar</field>
+        </record>
+        <record id="bartype_7" model="exercise.bar">
+            <field name="name">Buffalo Bar</field>
+        </record>
+        <record id="bartype_8" model="exercise.bar">
+            <field name="name">Cable</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

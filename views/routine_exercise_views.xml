@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="routine_exercise_view_tree" model="ir.ui.view">
+            <field name="name">routine.exercise.view.tree</field>
+            <field name="model">routine.exercise</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="exercise_id"/>
+                            <field name="group_id"/>
+                        </group>
+                        <group>
+                            <field name="external_video"/>
+                        </group>
+                    </group>
+                    <group string="Variants">
+                        <group>
+                            <field name="bartype_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="range_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="tempo_id" options="{'no_open':True,'no_create':True}"/>
+                        </group>
+                        <group>
+                            <field name="stance_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="grip_id" options="{'no_open':True,'no_create':True}"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Sets">
+                            <field name="set_ids">
+                                <tree editable="bottom">
+                                    <field name="reps"/>
+                                    <field name="weight"/>
+                                    <field name="rpe"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

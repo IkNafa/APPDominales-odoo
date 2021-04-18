@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="exercise_stance_1" model="exercise.stance">
+            <field name="name">Very Close Stance</field>
+        </record>
+        <record id="exercise_stance_2" model="exercise.stance">
+            <field name="name">Close Stance</field>
+        </record>
+        <record id="exercise_stance_3" model="exercise.stance">
+            <field name="name">Wide Stance</field>
+        </record>
+        <record id="exercise_stance_4" model="exercise.stance">
+            <field name="name">Very Wide Stance</field>
+        </record>
+        <record id="exercise_stance_5" model="exercise.stance">
+            <field name="name">Single Leg</field>
+        </record>
+        <record id="exercise_stance_6" model="exercise.stance">
+            <field name="name">In Split</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

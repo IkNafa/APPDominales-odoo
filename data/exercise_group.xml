@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="exercise_group_1" model="exercise.group">
+            <field name="name">Knee Dominant</field>
+        </record>
+    
+        <record id="exercise_group_2" model="exercise.group">
+            <field name="name">Hip Dominant</field>
+        </record>
+
+        <record id="exercise_group_3" model="exercise.group">
+            <field name="name">Horizontal Push</field>
+        </record>
+
+        <record id="exercise_group_4" model="exercise.group">
+            <field name="name">Vertical Push</field>
+        </record>
+        
+        <record id="exercise_group_5" model="exercise.group">
+            <field name="name">Horizontal Pull</field>
+        </record>
+
+        <record id="exercise_group_6" model="exercise.group">
+            <field name="name">Vertical Pull</field>
+        </record>
+
+        <record id="exercise_group_7" model="exercise.group">
+            <field name="name">Misc</field>
+        </record>
+
+        <record id="exercise_group_8" model="exercise.group">
+            <field name="name">Weightlifting</field>
+        </record>
+
+    </data>
+    
+
+</odoo>

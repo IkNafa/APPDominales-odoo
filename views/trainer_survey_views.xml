@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="trainer_survey_view_tree" model="ir.ui.view">
+            <field name="name">trainer.survey.view.tree</field>
+            <field name="model">trainer.survey</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="estado"/>
+                    <field name="client_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="trainer_survey_view_form" model="ir.ui.view">
+            <field name="name">trainer.survey.view.form</field>
+            <field name="model">trainer.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="client_id"/>
+                                <field name="estado"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Questions">
+                                <field name="question_ids">
+                                    <tree>
+                                        <field name="question"/>
+                                        <field name="answer_count"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

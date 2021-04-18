@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="user_rol_1" model="user.rol">
+            <field name="name">Fisioterapeuta</field>
+        </record>
+
+        <record id="user_rol_2" model="user.rol">
+            <field name="name">Entrenador personal</field>
+        </record>
+    
+        <record id="user_rol_2" model="user.rol">
+            <field name="name">Nutricionista</field>
+        </record>
+    </data>
+    
+
+</odoo>

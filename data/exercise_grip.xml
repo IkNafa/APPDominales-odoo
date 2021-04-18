@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="exercise_grip_1" model="exercise.group">
+            <field name="name">Very Close Grip</field>
+        </record>
+        <record id="exercise_grip_2" model="exercise.group">
+            <field name="name">Close Grip</field>
+        </record>
+        <record id="exercise_grip_3" model="exercise.group">
+            <field name="name">Wide Grip</field>
+        </record>
+        <record id="exercise_grip_4" model="exercise.group">
+            <field name="name">Very Wide Grip</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

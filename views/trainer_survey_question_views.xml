@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="trainer_survey_question_view_form" model="ir.ui.view">
+            <field name="name">trainer.survey.question.view.form</field>
+            <field name="model">trainer.survey.question</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_title">
+                        <h1><field name="question"/></h1>
+                    </div>
+                    <notebook>
+                        <page string="Answers">
+                            <field name="answer_ids">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="answer"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

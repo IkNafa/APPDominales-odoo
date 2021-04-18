@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="exercise_exercise_view_tree" model="ir.ui.view">
+            <field name="name">exercise.exercise.view.tree</field>
+            <field name="model">exercise.exercise</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="group_id"/>
+                    <field name="external_video" widget="url"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="exercise_exercise_view_form" model="ir.ui.view">
+            <field name="name">exercise.exercise.view.form</field>
+            <field name="model">exercise.exercise</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="group_id"/>
+                            </group>
+                            <group>
+                                <field name="external_video"/>
+                            </group>
+                        </group>
+                        <group string="Description">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="exercise_exercise_action" model="ir.actions.act_window">
+            <field name="name">Exercises</field>
+            <field name="res_model">exercise.exercise</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="exercise_exercise_menu"
+            name="Exercises"
+            action="exercise_exercise_action"
+            parent="appdominales_root_menu"
+            sequence="2"/>
+    
+    </data>
+    
+
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="exercise_tempo_1" model="exercise.tempo">
+            <field name="name">Starndard</field>
+        </record>
+        <record id="exercise_tempo_2" model="exercise.tempo">
+            <field name="name">Tempo</field>
+        </record>
+        <record id="exercise_tempo_3" model="exercise.tempo">
+            <field name="name">Touch and Go</field>
+        </record>
+        <record id="exercise_tempo_4" model="exercise.tempo">
+            <field name="name">2ct Pause</field>
+        </record>
+        <record id="exercise_tempo_5" model="exercise.tempo">
+            <field name="name">3ct Pause</field>
+        </record>
+        <record id="exercise_tempo_6" model="exercise.tempo">
+            <field name="name">600 Tempo</field>
+        </record>
+        <record id="exercise_tempo_7" model="exercise.tempo">
+            <field name="name">320 Tempo</field>
+        </record>
+        <record id="exercise_tempo_8" model="exercise.tempo">
+            <field name="name">530 Tempo</field>
+        </record>
+        <record id="exercise_tempo_9" model="exercise.tempo">
+            <field name="name">303 Tempo</field>
+        </record>
+        <record id="exercise_tempo_10" model="exercise.tempo">
+            <field name="name">5ct Pause</field>
+        </record>
+        <record id="exercise_tempo_11" model="exercise.tempo">
+            <field name="name">Slow (5ct)</field>
+        </record>
+        <record id="exercise_tempo_12" model="exercise.tempo">
+            <field name="name">No Foot</field>
+        </record>
+        <record id="exercise_tempo_13" model="exercise.tempo">
+            <field name="name">No Contact</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>
