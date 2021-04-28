@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="auth_provider_odoo" model="auth.provider">
+            <field name="name">Odoo</field>
+        </record>
+
+        <record id="auth_provider_google" model="auth.provider">
+            <field name="name">Google</field>
+        </record>
+        
+        <record id="auth_provider_facebook" model="auth.provider">
+            <field name="name">Facebook</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

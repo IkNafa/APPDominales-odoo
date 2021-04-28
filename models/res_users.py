@@ -1,34 +1,49 @@
 from odoo import _, api, fields, models
 
-class User(models.Model):
-    _name = 'user.user'
-    _inherits = {"res.users": "odoo_user_id"}
+class ResUsers(models.Model):
+    _inherit = 'res.users'
 
-    odoo_user_id = fields.Many2one("res.users", string="Odoo user")
+    def _get_default_provider_id(self):
+        return self.env['auth.provider'].search([('name','=','Odoo')],limit=1).id
 
-    first_name = fields.Char(string="Nombre", required=True)
-    last_names = fields.Char(string="Apellidos", required=True)
+    is_appdominales_user = fields.Boolean(default=True)
 
-    bio = fields.Text(string="Biografía")
-    birthday = fields.Date(string="Fecha de nacimiento")
-    
+    is_trainer = fields.Boolean(default=False)
+    birthday = fields.Date(string="Birthday")
     gender = fields.Selection([('masculino','Masculino'),('femenino','Femenino'),('otro','Otro')], string="Género")
+    provider_id = fields.Many2one('auth.provider', string="Provider", default=_get_default_provider_id)
+    
+    rol_ids = trainer_ids = fields.Many2many('user.rol', 'res_users_rol_rel', 'rol_id','user_id',string="Rol")
+
+    client_ids = fields.One2many('res.users', 'trainer_id', string="Clients")
+    client_count = fields.Integer(compute="_compute_client_count", string="Clients")
+
+    trainer_id = fields.Many2one('res.users',domain=[('is_trainer','=',True)],string="Trainer")
+    rating_ids = fields.One2many('trainer.rating','trainer_id', string="Ratings")
+    rating_mean = fields.Float(compute="_compute_rating_mean")
+
+    firebase_token = fields.Char(string="Firebase token")
 
     measures_count = fields.Integer(compute="_compute_measures_count",string="Measures")
     training_count = fields.Integer(compute="_compute_training_count", string="trainings")
     survey_count = fields.Integer(compute="_compute_survey_count",string="Surveys")
 
-    # Client
+    goal_ids = fields.One2many('user.goal', 'user_id', string="Goals")
 
-    trainer_id = fields.Many2one('user.user', string="Trainer", domain=[('is_trainer','=',True)])
-    profession = fields.Char(string="Profession")
 
-    # Trainer
-
-    is_trainer = fields.Boolean(string="Is Trainer", default=False)
-
-    client_ids = fields.One2many('user.user','trainer_id', string="Clients")
-    rol_ids = fields.Many2many('user.rol', 'user_trainer_rol_rel','rol_id','user_id', string="Trainers")
+    def _compute_rating_mean(self):
+        for record in self:
+            if not record.rating_ids:
+                continue
+            
+            total = 0
+            for rating_id in record.rating_ids:
+                total += rating_id.rating
+            record.rating_mean = total / len(record.rating_ids)
+    
+    def _compute_client_count(self):
+        for record in self:
+            record.client_count = len(record.client_ids)
 
     def _compute_measures_count(self):
         for record in self:
@@ -44,7 +59,7 @@ class User(models.Model):
     
     def open_user_trainings(self):
         return {
-            'name': self.login + ' trainings',
+            'name': self.name + ' trainings',
             'view_mode': 'tree,form',
             'res_model': 'training.training',
             'type':'ir.actions.act_window',
@@ -54,7 +69,7 @@ class User(models.Model):
     
     def open_user_measures(self):
         return {
-            'name': self.login + ' measures',
+            'name': self.name + ' measures',
             'view_mode': 'tree,form',
             'res_model': 'user.measures',
             'type':'ir.actions.act_window',
@@ -64,7 +79,7 @@ class User(models.Model):
 
     def open_user_surveys(self):
         return {
-            'name': self.login + ' surveys',
+            'name': self.name + ' surveys',
             'view_mode': 'tree,form',
             'res_model': 'trainer.survey',
             'type':'ir.actions.act_window',
@@ -76,16 +91,9 @@ class User(models.Model):
         for record in self:
             record.is_trainer = True
 
-    @api.model
-    def create(self, vals):
-        if 'first_name' in vals and 'last_names' in vals:
-            vals['name'] = vals['first_name'] + " " + vals['last_names']
-        
-        return super(User, self).create(vals)
-
 class UserMark(models.Model):
     _name = "user.mark"
 
-    user_id = fields.Many2one('user.user', string="User", required=True)
+    user_id = fields.Many2one('res.users', string="User", required=True)
     routine_exercise_id = fields.Many2one('routine.exercise', string="Exercise", required=True)
     rm = fields.Float(string="RM", required=True)

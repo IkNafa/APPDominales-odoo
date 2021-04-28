@@ -1,5 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_user_user,access_user_user,model_user_user,base.group_user,1,1,1,1
 access_user_measures,access_user_measures,model_user_measures,base.group_user,1,1,1,1
 access_user_rol,access_user_rol,model_user_rol,base.group_user,1,1,1,1
 access_trainer_survey,access_trainer_survey,model_trainer_survey,base.group_user,1,1,1,1
@@ -18,3 +17,6 @@ access_routine_exercise_set,access_routine_exercise_set,model_routine_exercise_s
 access_user_mark,access_user_mark,model_user_mark,base.group_user,1,1,1,1
 access_exercise_group,access_exercise_group,model_exercise_group,base.group_user,1,1,1,1
 access_training_training,access_training_training,model_training_training,base.group_user,1,1,1,1
+access_user_goal,access_user_goal,model_user_goal,base.group_user,1,1,1,1
+access_auth_provider,access_auth_provider,model_auth_provider,base.group_user,1,1,1,1
+access_trainer_rating,access_trainer_rating,model_trainer_rating,base.group_user,1,1,1,1

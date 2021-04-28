@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="res_users_view_tree" model="ir.ui.view">
+            <field name="name">res.users.view.tree</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree duplicate="false">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="is_trainer"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_users_view_form" model="ir.ui.view">
+            <field name="name">res.users.view.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form> 
+                    <header>
+                        <button string="Set Trainer" name="setTrainer" type="object" class="oe_highlight" attrs="{'invisible':['|',('is_trainer','=',True),('id','=',False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" attrs="{'invisible':[('id','=',False)]}">
+                            <button name="open_user_measures" type="object" class="oe_stat_button" icon="fa-tachometer">
+                                <field name="measures_count" widget="statinfo"/>
+                            </button>
+                            <button name="open_user_trainings" type="object" class="oe_stat_button" icon="fa-folder-open-o">
+                                <field name="training_count" widget="statinfo"/>
+                            </button>
+                            <button name="open_user_surveys" type="object" class="oe_stat_button" icon="fa-question" attrs="{'invisible':[('is_trainer','=',False)]}">
+                                <field name="survey_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="Name" required="1"/></h1>
+                        </div>
+
+                        <group>
+                            <group string="Personal Information">
+                                <field name="is_trainer" invisible="1"/>
+                                <field name="gender"/>
+                                <field name="birthday"/>
+                                <field name="city"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="login" string="Email" widget="email"/>
+                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>
+                                <field name="provider_id" readonly="1" options="{'no_open' : True}"/>
+                                <field name="rating_mean" attrs="{'invisible':[('is_trainer','!=',True)]}"/>
+                            </group>
+                            <group string="Trainer" attrs="{'invisible':[('is_trainer','!=',True)]}">
+                                <field name="rol_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                            </group>
+                            <group string="Client" attrs="{'invisible':[('is_trainer','=',True)]}">
+                                <field name="function"/>
+                            </group>
+                        </group>
+                        <group string="Biography">
+                            <field name="comment" nolabel="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Clients" attrs="{'invisible':[('is_trainer','!=',True)]}">
+                                <field name="client_ids">
+                                    <tree create="false" duplicate="false">
+                                        <field name="name"/>
+                                        <field name="login"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Ratings" attrs="{'invisible':[('is_trainer','!=',True)]}">
+                                <field name="rating_ids">
+                                    <tree duplicate="false" editable="bottom">
+                                        <field name="client_id"/>
+                                        <field name="rating" invisible="1"/>
+                                        <field name="rating_selection" widget="priority"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Trainer" attrs="{'invisible':[('is_trainer','=',True)]}">
+                                <group>
+                                    <field name="trainer_id" />
+                                </group>
+                            </page>
+                            <page name="goals" string="Goals">
+                                <field name="goal_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="res_users_view_kanban" model="ir.ui.view">
+            <field name="name">res.users.view.kanban</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <templates>
+                        <field name="id"/>
+                        <field name="login"/>
+                        <field name="image_small"/>
+                        <field name="display_name"/>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <img class="o_kanban_image" t-att-src="kanban_image('res.users', 'image_small', record.id.raw_value)" t-att-alt="record.display_name"/>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="res_users_action" model="ir.actions.act_window">
+            <field name="name">Users</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_ids" eval="[(5,0,0),
+                (0,0,{'view_mode':'kanban', 'view_id':ref('res_users_view_kanban')}),
+                (0,0,{'view_mode':'tree', 'view_id':ref('res_users_view_tree')}),
+                (0,0,{'view_mode':'form', 'view_id':ref('res_users_view_form')}),]"/>
+            <field name="domain">[('is_appdominales_user','=',True)]</field>
+            <field name="context">{'default_is_appdominales_user':True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crea el primer usuario del sistema
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="res_users_menu"
+            name="Users"
+            action="res_users_action"
+            parent="appdominales_root_menu"
+            sequence="10"/>
+    
+    </data>
+    
+
+</odoo>

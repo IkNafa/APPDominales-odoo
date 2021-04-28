@@ -25,6 +25,9 @@
                                 <field name="date"/>
                                 <field name="weight"/>
                             </group>
+                            <group>
+                                <field name="height"/>
+                            </group>
                         </group>
                         <group>
                             <group string="Impedancia">

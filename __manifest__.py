@@ -19,6 +19,7 @@
         'data/exercise_range.xml',
         'data/exercise_stance.xml',
         'data/exercise_tempo.xml',
+        'data/auth_provider.xml',
 
         'security/ir.model.access.csv',
 
@@ -30,8 +31,8 @@
         'views/trainer_survey_views.xml',
         'views/user_measures_views.xml',
         'views/user_rol_views.xml',
-        'views/user_user_views.xml',
         'views/training_training_views.xml',
+        'views/res_users_views.xml',
         
     ],
     'application': True,

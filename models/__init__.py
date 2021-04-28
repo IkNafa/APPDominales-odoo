@@ -5,5 +5,8 @@ from . import routine_routine
 from . import trainer_survey
 from . import user_measures
 from . import user_rol
-from . import user_user
 from . import training_training
+from . import user_goal
+from . import auth_provider
+from . import trainer_rating
+from . import res_users

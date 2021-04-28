@@ -3,8 +3,8 @@ from odoo import _, api, fields, models
 class TrainerSurvey(models.Model):
     _name = 'trainer.survey'
 
-    user_id = fields.Many2one('user.user', required=True)
-    client_id = fields.Many2one('user.user', string="Client", required=True)
+    user_id = fields.Many2one('res.users', required=True)
+    client_id = fields.Many2one('res.users', string="Client", required=True)
     estado = fields.Selection([('principal','Principal'),('semanal','Semanal')], string="Estado")
     question_ids = fields.One2many("trainer.survey.question",'survey_id', string="Questions")
 

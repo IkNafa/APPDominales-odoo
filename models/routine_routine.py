@@ -18,7 +18,7 @@ class Routine(models.Model):
             day_array = []
             for day in record.dayofweek_ids:
                 day_array.append(day.code)
-            record.dayofweek_string = day.join('-')
+            record.dayofweek_string = '-'.join(day_array)
 
 
 class DayOfWeek(models.Model):
@@ -33,4 +33,3 @@ class RoutineDayOfWeekREl:
 
     dayofweek_id = fields.Many2one('routine.dayofweek', required=True)
     routine_id = fields.Many2one('routine.routine', required=True)
-    

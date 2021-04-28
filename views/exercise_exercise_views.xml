@@ -53,7 +53,7 @@
             name="Exercises"
             action="exercise_exercise_action"
             parent="appdominales_root_menu"
-            sequence="2"/>
+            sequence="20"/>
     
     </data>
     
