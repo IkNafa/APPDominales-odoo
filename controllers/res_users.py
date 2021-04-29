@@ -4,7 +4,7 @@ import base64
 
 class UserController(http.Controller):
 
-    @http.route(route="/api/users/<int:user_id>", type="json", auth="public", methods=['GET'])
+    @http.route(route="/api/users/<int:user_id>", type="json", auth="user", methods=['GET'])
     def getUserData(self, user_id=None):
         if user_id:
             user = request.env['res.users'].search([('is_appdominales_user','=',True),('id','=',user_id)])
@@ -13,7 +13,6 @@ class UserController(http.Controller):
                 'name':user.name,
                 'email':user.login,
                 'is_trainer':user.is_trainer,
-                'image_small':user.image_small,
                 'provider': user.provider_id.name,
                 'gender': user.gender,
                 'birthday': user.birthday,
@@ -35,7 +34,6 @@ class UserController(http.Controller):
                     'name':user.trainer_id.name,
                     'client_count':user.trainer_id.client_count,
                     'rating_mean':user.trainer_id.rating_mean,
-                    'image_small':user.trainer_id.image_small,
                 }
             
             if user.goal_ids:
@@ -54,7 +52,7 @@ class UserController(http.Controller):
                 'message':"Nada"
             }
 
-    @http.route(route="/api/users", type="json", auth="public", methods=['GET'])
+    @http.route(route="/api/users", type="json", auth="none", methods=['GET'])
     def getUserList(self, **kw):
         user_ids = request.env['res.users'].search([('is_appdominales_user','=',True)])
         users_data = []
@@ -71,7 +69,7 @@ class UserController(http.Controller):
     def getCurrentUserData(self):
         return self.getUserData(request.session.uid)
         
-    @http.route(route="/api/users/register", type="json", auth="public", methods=['POST'])
+    @http.route(route="/api/users/register", type="json", auth="none", methods=['POST'])
     def createNewUser(self, **kw):
         user = request.env['res.users'].sudo().create(kw)
         if user:
