@@ -3,7 +3,7 @@ from odoo.http import request
 
 class TrainingController(http.Controller):
 
-     @http.route(route="/api/users/<int:user_id>/trainings", type="json", auth="user", methods=['GET'])
+     @http.route(route="/api/users/<int:user_id>/trainings", type="json", auth="user", methods=['POST'])
      def getUserTrainingList(self, user_id=None):
          if user_id:
             training_ids = request.env['training.training'].search(['|',('owner_id','=',user_id),('client_id','=',user_id)])

@@ -4,7 +4,7 @@ import base64
 
 class UserController(http.Controller):
 
-    @http.route(route="/api/users/<int:user_id>", type="json", auth="user", methods=['GET'])
+    @http.route(route="/api/users/<int:user_id>", type="json", auth="user", methods=['POST'])
     def getUserData(self, user_id=None):
         if user_id:
             user = request.env['res.users'].search([('is_appdominales_user','=',True),('id','=',user_id)])
@@ -52,7 +52,7 @@ class UserController(http.Controller):
                 'message':"Nada"
             }
 
-    @http.route(route="/api/users", type="json", auth="none", methods=['GET'])
+    @http.route(route="/api/users", type="json", auth="none", methods=['POST'])
     def getUserList(self, **kw):
         user_ids = request.env['res.users'].search([('is_appdominales_user','=',True)])
         users_data = []
