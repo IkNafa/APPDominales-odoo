@@ -8,7 +8,7 @@
     'license': 'LGPL-3',
     'category': 'Fitness',
     'depends': [
-        'base'
+        'web'
     ],
     'data': [
         'data/routine_dayofweek.xml',
