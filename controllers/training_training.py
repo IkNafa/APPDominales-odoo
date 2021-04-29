@@ -10,6 +10,7 @@ class TrainingController(http.Controller):
             training_list = []
             for training_id in training_ids:
                 training = {
+                    'id': training_id.id,
                     'name': training_id.name,
                     'trainer':{
                         'id': training_id.owner_id.id,
