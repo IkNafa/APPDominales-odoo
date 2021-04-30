@@ -14,11 +14,16 @@ class UserController(http.Controller):
                 'email':user.login,
                 'is_trainer':user.is_trainer,
                 'provider': user.provider_id.name,
-                'gender': user.gender,
-                'birthday': user.birthday,
-                'phone':user.phone,
-                'function': user.function
+                'gender': user.gender or "",
+                'birthday': user.birthday or "",
+                'phone':user.phone or "",
+                'function': user.function or ""
             }
+
+            if user.image_small:
+                url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                attachment_id = request.env['ir.attachment'].search([('res_model','=','res.partner'),('res_id','=',user.partner_id.id),('res_field','=','image_small')],limit=1).id
+                user_data['image'] = "%s/web/image/ir.attachment/%s/datas" % (url, str(attachment_id))
 
             last_measure = request.env['user.measures'].search([('user_id','=',user.id)],order="date desc",limit=1)
             if last_measure:

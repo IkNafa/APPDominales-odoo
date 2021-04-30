@@ -1,1 +1,1 @@
-# APPDominales-odoo
+# appdominales_odoo

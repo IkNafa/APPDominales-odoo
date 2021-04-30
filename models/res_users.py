@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
