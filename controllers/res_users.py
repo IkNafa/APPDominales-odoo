@@ -4,7 +4,7 @@ import base64
 
 class UserController(http.Controller):
 
-    @http.route(route="/api/users/<int:user_id>", type="json", auth="user", methods=['POST'])
+    @http.route(route="/api/users/<int:user_id>", type="json", auth="none", methods=['POST'])
     def getUserData(self, user_id=None):
         if user_id:
             user = request.env['res.users'].search([('is_appdominales_user','=',True),('id','=',user_id)])
