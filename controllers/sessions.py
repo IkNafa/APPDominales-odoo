@@ -8,5 +8,5 @@ class AppdominalesSession(Session):
      @http.route('/api/session/authenticate', type='json', auth="none")
      def apiAuthenticate(self, db, login, password, token=None,base_location=None):
          user_auth_data = super(AppdominalesSession, self).authenticate(db, login, password, base_location)
-         
-         return UserController().getUserData(user_auth_data.get("uid"))
+         user = request.env['res.users'].search([('is_appdominales_user','=',True),('id','=',user_auth_data.get("uid"))], limit=1)
+         return UserController().getUserData(user)
