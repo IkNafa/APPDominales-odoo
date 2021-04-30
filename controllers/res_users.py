@@ -78,7 +78,7 @@ class UserController(http.Controller):
     
     @http.route(route="/api/users/me", type="json", auth="user", methods=['POST'])
     def getCurrentUserData(self):
-        return self.getUserData(request.session.uid)
+        return self.getUserDataRoute(request.session.uid)
         
     @http.route(route="/api/users/register", type="json", auth="none", methods=['POST'])
     def createNewUser(self, **kw):
