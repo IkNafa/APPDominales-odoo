@@ -15,7 +15,7 @@ class TrainingController(http.Controller):
                     'trainer':{
                         'id': training_id.owner_id.id,
                         'name': training_id.owner_id.name,
-                        'email': training_id.owner_od.login,
+                        'email': training_id.owner_id.login,
                     }
                 }
 
