@@ -50,6 +50,14 @@ class UserController(http.Controller):
             
             user_data['goals'] = goals
 
+        if user.category_id:
+            tags = []
+            for tag in user.category_id:
+                tags.append({
+                    'name': tag.name,
+                })
+            user_data['tags'] = tags
+
         return user_data
 
 
