@@ -35,7 +35,7 @@ class UserController(http.Controller):
             user_data['trainer'] = {
                 'id':user.trainer_id.id,
                 'name':user.trainer_id.name,
-                'email': user.trainer_id.email,
+                'email': user.trainer_id.login,
                 'client_count':user.trainer_id.client_count,
                 'rating_mean':user.trainer_id.rating_mean,
             }
