@@ -1,9 +1,6 @@
 from odoo import http
 from odoo.http import request
 import base64
-import locale
-
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
 class UserController(http.Controller):
 
