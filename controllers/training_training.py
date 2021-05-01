@@ -15,6 +15,7 @@ class TrainingController(http.Controller):
                     'trainer':{
                         'id': training_id.owner_id.id,
                         'name': training_id.owner_id.name,
+                        'email': training_id.owner_od.login,
                     }
                 }
 
@@ -22,6 +23,7 @@ class TrainingController(http.Controller):
                     training['client'] = {
                         'id': training_id.client_id.id,
                         'name': training_id.client_id.name,
+                        'email': training_id.client_id.login,
                     }
                 
                 training_list.append(training)

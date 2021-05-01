@@ -28,12 +28,14 @@ class UserController(http.Controller):
                 'weight': last_measure.weight,
                 'height': last_measure.height,
                 'date': last_measure.date,
+                'id': last_measure.id,
             }
         
         if user.trainer_id:
             user_data['trainer'] = {
                 'id':user.trainer_id.id,
                 'name':user.trainer_id.name,
+                'email': user.trainer_id.email,
                 'client_count':user.trainer_id.client_count,
                 'rating_mean':user.trainer_id.rating_mean,
             }
