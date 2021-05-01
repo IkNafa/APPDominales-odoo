@@ -27,7 +27,7 @@ class UserController(http.Controller):
                 user_data['current_measure'] = {
                 'weight': last_measure.weight,
                 'height': last_measure.height,
-                'date': last_measure.date.strftime("%Y-%m-%d %H:%M:%S"),
+                'date': last_measure.date.strftime("%d %b."),
                 'id': last_measure.id,
             }
         
