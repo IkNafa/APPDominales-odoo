@@ -9,4 +9,5 @@ from . import training_training
 from . import user_goal
 from . import auth_provider
 from . import trainer_rating
+from . import app_chat
 from . import res_users

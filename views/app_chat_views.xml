@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="app_chat_view_tree" model="ir.ui.view">
+            <field name="name">app.chat.view.tree</field>
+            <field name="model">app.chat</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user1_id"/>
+                    <field name="user2_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="app_chat_view_form" model="ir.ui.view">
+            <field name="name">app.chat.view.form</field>
+            <field name="model">app.chat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="user1_id" attrs="{'readonly':[('id','!=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="user2_id" attrs="{'readonly':[('id','!=',False)]}"/>
+                            </group>
+                        </group>
+                        <group string="Mensages">
+                            <field name="chat_message_ids" nolabel="1">
+                                <tree editable="top">
+                                    <field name="user_id" readonly="1"/>
+                                    <field name="datetime"/>
+                                    <field name="text"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

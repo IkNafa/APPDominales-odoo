@@ -34,6 +34,7 @@
                             <button name="open_user_surveys" type="object" class="oe_stat_button" icon="fa-question" attrs="{'invisible':[('is_trainer','=',False)]}">
                                 <field name="survey_count" widget="statinfo"/>
                             </button>
+                            <button name="open_user_chats" type="object" class="oe_stat_button" icon="fa-comment" string="Chats"/>
                         </div>
                         <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
                         <div class="oe_title">

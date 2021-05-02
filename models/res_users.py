@@ -87,6 +87,16 @@ class ResUsers(models.Model):
             'context':{'default_user_id':self.id}
         }
 
+    def open_user_chats(self):
+        return {
+            'name': 'Chat',
+            'view_mode': 'tree,form',
+            'res_model': 'app.chat',
+            'type':'ir.actions.act_window',
+            'domain':['|',('user1_id','=',self.id),('user2_id','=',self.id)],
+            'context':{'default_user1_id':self.id}
+        }
+
     def setTrainer(self):
         for record in self:
             record.is_trainer = True

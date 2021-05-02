@@ -20,3 +20,5 @@ access_training_training,access_training_training,model_training_training,base.g
 access_user_goal,access_user_goal,model_user_goal,base.group_user,1,1,1,1
 access_auth_provider,access_auth_provider,model_auth_provider,base.group_user,1,1,1,1
 access_trainer_rating,access_trainer_rating,model_trainer_rating,base.group_user,1,1,1,1
+access_app_chat,access_app_chat,model_app_chat,base.group_user,1,1,1,1
+access_app_chat_message,access_app_chat_message,model_app_chat_message,base.group_user,1,1,1,1
