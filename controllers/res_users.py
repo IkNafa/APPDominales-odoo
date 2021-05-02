@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 import base64
+from odoo import fields
 
 class UserController(http.Controller):
 
@@ -121,7 +122,7 @@ class UserController(http.Controller):
         messages_data = []
         for message_id in message_ids:
             messages_data.append({
-                'datetime': message_id.datetime.strftime("%d %b. %H:%M"),
+                'datetime': message_id.datetime,
                 'text': message_id.text,
                 'user': {
                     'id': message_id.user_id.id,
@@ -131,3 +132,21 @@ class UserController(http.Controller):
             })
         
         return messages_data
+    
+    @http.route(route="/api/chat/send", type="json", auth="user", methods=['POST'])
+    def sendChatMessage(self, user_id, text):
+        chat_id = request.env['app.chat'].search(['|','&','|',('user1_id','=',request.session.uid),('user2_id','=',request.session.uid),('user2_id','=',user_id),('user1_id','=',user_id)],limit=1)
+        if not chat_id:
+            chat_id = request.env['app.chat'].create({
+                'user1_id': request.session.uid,
+                'user2_id': user_id,
+            }).id
+        
+        chat_id.write({
+            'chat_message_ids': [(0,0,{
+                'user_id': request.session.uid,
+                'text': text,
+                'datetime': fields.Datetime.now()})]
+        })
+
+        return "OK"
