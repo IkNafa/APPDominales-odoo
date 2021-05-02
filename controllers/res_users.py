@@ -118,7 +118,7 @@ class UserController(http.Controller):
     
     @http.route(route="/api/chat/get", type="json", auth="user", methods=['POST'])
     def getUserChatMessages(self, user_id):
-        message_ids = request.env['app.chat.message'].search(['|','&','|',('chat_id.user1_id','=',request.session.uid),('chat_id.user2_id','=',request.session.uid),('chat_id.user2_id','=',user_id),('chat_id.user1_id','=',user_id)], order="datetime desc")
+        message_ids = request.env['app.chat.message'].search(['|','&','|',('chat_id.user1_id','=',request.session.uid),('chat_id.user2_id','=',request.session.uid),('chat_id.user2_id','=',user_id),('chat_id.user1_id','=',user_id)], order="datetime asc")
         messages_data = []
         for message_id in message_ids:
             messages_data.append({
