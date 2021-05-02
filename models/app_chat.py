@@ -1,5 +1,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+import requests
+import json
 
 class Chat(models.Model):
     _name = 'app.chat'
@@ -39,4 +41,32 @@ class Message(models.Model):
     user_id = fields.Many2one('res.users', required=True, default=_get_default_user_id)
     text = fields.Text(string="Mensaje", required=True)
     datetime = fields.Datetime(string="Fecha", required=True, default=fields.Datetime.now())
+
+    @api.model
+    def create(self, vals):
+        message_id = super(Message, self).create(vals)
+
+        receiver_id = message_id.chat_id.user1_id if message_id.chat_id.user1_id.id != message_id.user_id.id else message_id.chat_id.user2_id
+
+        self._send_request(message_id.user_id, receiver_id,message_id.text)
+
+        return message_id
+    
+    def _send_request(self,user_id,receiver_id, message_text):
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": "key=AAAA_V01gvk:APA91bGF5WOG7xRkEmD885iGsUnmX0R4i16xeSUV1t92y9ppiDrJaPFOGAAfD9vdKIeAAv_UPfF19NQy8lml0ZP_YjA82qsNFqzAAyiaNy1Z1lSh08f_YBAvaTskxqRjrgu5Dyt0W7HB"
+        }
+
+        body = {
+            "registration_ids":[receiver_id.firebase_token],
+            "notification": {
+                "body": "%s" % (message_text),
+                "title": user_id.name
+            }
+        }
+
+        uri = "https://fcm.googleapis.com/fcm/send"
+
+        requests.post(uri, headers=headers, data=json.dumps(body))
 
