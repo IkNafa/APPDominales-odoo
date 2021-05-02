@@ -57,6 +57,17 @@ class UserController(http.Controller):
                     'name': tag.name,
                 })
             user_data['tags'] = tags
+        
+        if user.client_ids:
+            clients = []
+            for client_id in user.client_ids:
+                clients.append({
+                    'id': client_id.id,
+                    'name': client_id.name,
+                    'image': client_id.image_small,
+                    'email': client_id.login,
+                })
+            user_data['clients'] = clients
 
         return user_data
 
