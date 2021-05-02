@@ -9,4 +9,8 @@ class AppdominalesSession(Session):
      def apiAuthenticate(self, db, login, password, token=None,base_location=None):
          user_auth_data = super(AppdominalesSession, self).authenticate(db, login, password, base_location)
          user = request.env['res.users'].search([('is_appdominales_user','=',True),('id','=',user_auth_data.get("uid"))], limit=1)
+         if token:
+            user.sudo().write({
+                'firebase_token': token
+            })
          return UserController().getUserData(user)
