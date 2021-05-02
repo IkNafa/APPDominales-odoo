@@ -4,6 +4,12 @@ import base64
 
 class UserController(http.Controller):
 
+    def getImageUrl(self, partner_id):
+        url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        attachment_id = request.env['ir.attachment'].search([('res_model','=','res.partner'),('res_id','=',partner_id),('res_field','=','image_small')],limit=1).id
+        return "%s/web/image/ir.attachment/%s/datas" % (url, str(attachment_id))
+
+
     def getUserData(self, user):
         user_data = {
             'id':user.id,
@@ -18,9 +24,7 @@ class UserController(http.Controller):
         }
 
         if user.image_small:
-            url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
-            attachment_id = request.env['ir.attachment'].search([('res_model','=','res.partner'),('res_id','=',user.partner_id.id),('res_field','=','image_small')],limit=1).id
-            user_data['image'] = "%s/web/image/ir.attachment/%s/datas" % (url, str(attachment_id))
+            user_data['image'] = self.getImageUrl(user.partner_id.id)
 
         last_measure = request.env['user.measures'].search([('user_id','=',user.id)],order="date desc",limit=1)
         if last_measure:
@@ -61,10 +65,11 @@ class UserController(http.Controller):
         if user.client_ids:
             clients = []
             for client_id in user.client_ids:
+
                 clients.append({
                     'id': client_id.id,
                     'name': client_id.name,
-                    'image': client_id.image_small,
+                    'image': self.getImageUrl(client_id.partner_id.id) if client_id.image_small else "",
                     'email': client_id.login,
                 })
             user_data['clients'] = clients
