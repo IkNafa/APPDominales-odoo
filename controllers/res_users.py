@@ -2,6 +2,8 @@ from odoo import http
 from odoo.http import request
 import base64
 from odoo import fields
+from pytz import utc
+from pytz import timezone
 
 class UserController(http.Controller):
 
@@ -121,8 +123,10 @@ class UserController(http.Controller):
         message_ids = request.env['app.chat.message'].search(['|','&','|',('chat_id.user1_id','=',request.session.uid),('chat_id.user2_id','=',request.session.uid),('chat_id.user2_id','=',user_id),('chat_id.user1_id','=',user_id)], order="datetime asc")
         messages_data = []
         for message_id in message_ids:
+            user_pytz = timezone('Europe/Madrid')
+            datetime = utc.localize(message_id.datetime).astimezone(user_pytz)
             messages_data.append({
-                'datetime': message_id.datetime,
+                'datetime': datetime,
                 'text': message_id.text,
                 'user': {
                     'id': message_id.user_id.id,
