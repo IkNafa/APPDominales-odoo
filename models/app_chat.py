@@ -34,7 +34,7 @@ class Message(models.Model):
     def _get_default_user_id(self):
         return self.env.user.id
 
-    chat_id = fields.Many2one('app.chat', required=True)
+    chat_id = fields.Many2one('app.chat', required=True, ondelete="cascade")
 
     user_id = fields.Many2one('res.users', required=True, default=_get_default_user_id)
     text = fields.Text(string="Mensaje", required=True)

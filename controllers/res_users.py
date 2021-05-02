@@ -144,7 +144,7 @@ class UserController(http.Controller):
             chat_id = request.env['app.chat'].create({
                 'user1_id': request.session.uid,
                 'user2_id': user_id,
-            }).id
+            })
         
         chat_id.write({
             'chat_message_ids': [(0,0,{
