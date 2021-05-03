@@ -3,6 +3,11 @@ from odoo.http import request
 
 class TrainingController(http.Controller):
 
+    def getImageUrl(self, exercise_id):
+        url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        attachment_id = request.env['ir.attachment'].search([('res_model','=','exercise.exercise'),('res_id','=',exercise_id),('res_field','=','image_small')],limit=1).id
+        return "%s/web/image/ir.attachment/%s/datas" % (url, str(attachment_id))
+
     @http.route(route="/api/users/<int:user_id>/trainings", type="json", auth="user", methods=['POST'])
     def getUserTrainingList(self, user_id=None):
         if user_id:
@@ -60,13 +65,16 @@ class TrainingController(http.Controller):
                             'weight': set_id.weight,
                             'rpe': set_id.rpe,
                         })
+
+                    if exercise_id.image_small:
+                        image_url = self.getImageUrl(exercise_id.exercise_id.id)
                     
                     exercises_data.append({
                         'name':exercise_id.name,
                         'description': exercise_id.description or "",
                         'external_video': exercise_id.external_video or "",
                         'group': exercise_id.group_id.name or "",
-                        'image': exercise_id.image_small or "",
+                        'image': image_url or "",
                         'bartype': exercise_id.bartype_id.name or "",
                         'range': exercise_id.range_id.name or "",
                         'tempo': exercise_id.tempo_id.name or "",
