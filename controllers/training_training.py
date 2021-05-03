@@ -66,6 +66,7 @@ class TrainingController(http.Controller):
                             'rpe': set_id.rpe,
                         })
 
+                    image_url = ""
                     if exercise_id.image_small:
                         image_url = self.getImageUrl(exercise_id.exercise_id.id)
                     
