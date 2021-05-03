@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 
 class Exercise(models.Model):
     _name = 'exercise.exercise'
