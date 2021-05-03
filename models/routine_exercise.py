@@ -3,8 +3,8 @@ from odoo import _, api, fields, models
 class RoutineExercise(models.Model):
     _name = 'routine.exercise'
 
-    routine_id = fields.Many2one('routine.routine', string="Routine", required=True)
-    exercise_id = fields.Many2one('exercise.exercise', string="Exercise", required=True)
+    routine_id = fields.Many2one('routine.routine', string="Routine", required=True, ondelete="cascade")
+    exercise_id = fields.Many2one('exercise.exercise', string="Exercise", required=True, ondelete="cascade")
 
     name = fields.Char(string="Name", related="exercise_id.name")
     description = fields.Text(string="Description", related="exercise_id.description")

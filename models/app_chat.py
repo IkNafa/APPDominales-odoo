@@ -6,8 +6,8 @@ import json
 class Chat(models.Model):
     _name = 'app.chat'
 
-    user1_id = fields.Many2one('res.users', string="Usuario", required=True)
-    user2_id = fields.Many2one('res.users', string="Usuario", required=True)
+    user1_id = fields.Many2one('res.users', string="Usuario", required=True, ondelete="cascade")
+    user2_id = fields.Many2one('res.users', string="Usuario", required=True, ondelete="cascade")
 
     chat_message_ids = fields.One2many('app.chat.message','chat_id', string="Messages")
 

@@ -3,7 +3,7 @@ from odoo import _, api, fields, models
 class UserMeasures(models.Model):
     _name = 'user.measures'
 
-    user_id = fields.Many2one('res.users', required=True)
+    user_id = fields.Many2one('res.users', required=True, ondelete="cascade")
     date = fields.Date(string="Fecha", required=True)
     weight = fields.Float(string="Peso", required=True)
     height = fields.Integer(string="Altura", required=True)
