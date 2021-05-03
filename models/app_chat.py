@@ -38,7 +38,7 @@ class Message(models.Model):
 
     chat_id = fields.Many2one('app.chat', required=True, ondelete="cascade")
 
-    user_id = fields.Many2one('res.users', required=True, default=_get_default_user_id)
+    user_id = fields.Many2one('res.users', required=True, default=_get_default_user_id, ondelete="cascade")
     text = fields.Text(string="Mensaje", required=True)
     datetime = fields.Datetime(string="Fecha", required=True, default=fields.Datetime.now())
 
